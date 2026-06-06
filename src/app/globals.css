@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Estilos base globales — Ferreteria La Ceja
+ * Toda la paleta vive en tailwind.config.ts; aquí solo lo que no se puede
+ * resolver con clases utilitarias.
+ */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-headline), system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Iconos rellenos: <span class="material-symbols-outlined material-icon-filled">...</span> */
+  .material-icon-filled {
+    font-variation-settings: "FILL" 1;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
