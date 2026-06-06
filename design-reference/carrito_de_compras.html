@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Carrito de Compras - Ferretería La Ceja</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#dae2ff",
+            "secondary-fixed-dim": "#bec6e3",
+            "surface": "#f9f9f9",
+            "on-surface-variant": "#574236",
+            "on-secondary-fixed": "#131b30",
+            "primary-fixed": "#ffdbc8",
+            "secondary": "#565e77",
+            "primary-container": "#f27a1a",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#3e465e",
+            "surface-container-highest": "#e2e2e2",
+            "outline-variant": "#dec1b1",
+            "on-tertiary-fixed-variant": "#004b71",
+            "primary": "#984700",
+            "on-primary-fixed-variant": "#743500",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#006495",
+            "surface-container": "#eeeeee",
+            "tertiary-fixed-dim": "#8fcdff",
+            "tertiary-container": "#00a4f1",
+            "on-surface": "#1a1c1c",
+            "outline": "#8b7264",
+            "on-background": "#1a1c1c",
+            "surface-container-high": "#e8e8e8",
+            "surface-bright": "#f9f9f9",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#f1f1f1",
+            "surface-dim": "#dadada",
+            "inverse-primary": "#ffb68a",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#cbe6ff",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f9f9f9",
+            "on-secondary-container": "#5a627b",
+            "on-tertiary-container": "#003654",
+            "primary-fixed-dim": "#ffb68a",
+            "on-tertiary-fixed": "#001e30",
+            "surface-variant": "#e2e2e2",
+            "surface-tint": "#984700",
+            "on-primary-fixed": "#321300",
+            "surface-container-low": "#f3f3f3",
+            "inverse-surface": "#2f3131",
+            "secondary-container": "#d7dffd",
+            "on-primary-container": "#562500"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface">
+  <!-- TopAppBar -->
+  <header
+    class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#1A2238] dark:bg-[#0D111C] shadow-lg dark:shadow-none">
+    <div class="text-xl font-bold text-white tracking-tight">Ferretería La Ceja</div>
+    <div class="hidden md:flex items-center gap-8">
+      <nav class="flex gap-6">
+        <a class="text-slate-300 hover:text-white transition-colors" href="#">Productos</a>
+        <a class="text-slate-300 hover:text-white transition-colors" href="#">Servicios</a>
+        <a class="text-[#F27A1A] font-bold" href="#">Carrito</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <button
+        class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+        <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+      </button>
+      <button
+        class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+        <span class="material-symbols-outlined" data-icon="person">person</span>
+      </button>
+      <button
+        class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+      </button>
+    </div>
+  </header>
+  <main class="pt-24 pb-16 px-6 lg:px-24 max-w-7xl mx-auto">
+    <!-- TÍTULO -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-2">Carrito de Compras</h1>
+      <div class="h-1 w-24 bg-primary-container mx-auto rounded-full"></div>
+    </div>
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="grid grid-cols-1 lg:grid-cols-10 gap-12">
+      <!-- Columna izquierda: Tabla de Productos (70%) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="overflow-x-auto">
+          <table class="w-full border-separate border-spacing-y-4">
+            <thead class="hidden md:table-header-group">
+              <tr class="text-left text-secondary font-semibold uppercase text-xs tracking-wider">
+                <th class="pb-4 px-4">Producto</th>
+                <th class="pb-4 px-4">Precio</th>
+                <th class="pb-4 px-4 text-center">Cantidad</th>
+                <th class="pb-4 px-4 text-right">Subtotal</th>
+                <th class="pb-4 px-4"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Item 1 -->
+              <tr class="bg-surface-container-lowest shadow-sm rounded-xl">
+                <td class="py-6 px-4">
+                  <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+                      <img alt="Taladro Percutor Industrial" class="w-full h-full object-cover"
+                        data-alt="Modern yellow industrial power drill on workbench"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7qAhD7mI30VUMqWoefbPAvHpDsFCyJxyLiJdrShYEX58f9x_8FjcpgE-F65cwOmcNE2fpIAAQJUpZ488FFhnuzADt208HKbtHsCHLtSg2f4Qsb5Zag8i7-L4RGiTw_kf3GdTvteHK2JcPSMsDF7C4WXn_lf0r0KA3H7JnthMH5pzcNxeG61m-6Ch61cMqieIs78RsqHo25KJZ3ZzFFdwAQjf1IKqNWmvEiLVCfTli9FaLyVMLNy6jwknnei-mSGhDPzbwtwB6IwE" />
+                    </div>
+                    <div>
+                      <p class="font-headline font-bold text-on-surface">Taladro Percutor 20V</p>
+                      <p class="text-xs text-secondary font-medium">SKU: AT-45920</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-6 px-4">
+                  <span class="font-headline font-bold text-on-surface">$450.000</span>
+                </td>
+                <td class="py-6 px-4">
+                  <div
+                    class="flex items-center justify-center gap-3 bg-surface-container-low rounded-lg p-1 w-28 mx-auto">
+                    <button
+                      class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-white text-primary transition-all">
+                      <span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+                    </button>
+                    <span class="font-bold text-on-surface">1</span>
+                    <button
+                      class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-white text-primary transition-all">
+                      <span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    </button>
+                  </div>
+                </td>
+                <td class="py-6 px-4 text-right">
+                  <span class="font-headline font-extrabold text-on-surface">$450.000</span>
+                </td>
+                <td class="py-6 px-4 text-center">
+                  <button class="text-error hover:bg-error-container/20 p-2 rounded-full transition-colors">
+                    <span class="material-symbols-outlined" data-icon="close">close</span>
+                  </button>
+                </td>
+              </tr>
+              <!-- Item 2 -->
+              <tr class="bg-surface-container-lowest shadow-sm rounded-xl">
+                <td class="py-6 px-4">
+                  <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+                      <img alt="Caja de Herramientas Premium" class="w-full h-full object-cover"
+                        data-alt="Sturdy metallic toolbox with various compartments"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuABoBnqJyzNW2GXI7Zss5soZ3nuuS55fkWp40riRTGVXSumcNa_kxru6ptoQussLBHe1QbJchGyP1Rl6LfLm6phRMm6DFPGVQDUgAzRifM2DAE95bZAytQWFiCNC2B3Ok3lKNUeabiUlh_dFHPWWCyWw3rK3qu3mPbAgNQv4jqxiM6_X9qtubdarbF57tbGVeZyhMko_VpX44K23ik-OwvoGzzVZKRsS55XnVeHVEWBKL7xVZpuIEnRZmYc-pVuG1_jGUGDHnjHEn0" />
+                    </div>
+                    <div>
+                      <p class="font-headline font-bold text-on-surface">Caja Herramientas Pro</p>
+                      <p class="text-xs text-secondary font-medium">SKU: CH-88123</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-6 px-4">
+                  <span class="font-headline font-bold text-on-surface">$125.500</span>
+                </td>
+                <td class="py-6 px-4">
+                  <div
+                    class="flex items-center justify-center gap-3 bg-surface-container-low rounded-lg p-1 w-28 mx-auto">
+                    <button
+                      class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-white text-primary transition-all">
+                      <span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+                    </button>
+                    <span class="font-bold text-on-surface">2</span>
+                    <button
+                      class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-white text-primary transition-all">
+                      <span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    </button>
+                  </div>
+                </td>
+                <td class="py-6 px-4 text-right">
+                  <span class="font-headline font-extrabold text-on-surface">$251.000</span>
+                </td>
+                <td class="py-6 px-4 text-center">
+                  <button class="text-error hover:bg-error-container/20 p-2 rounded-full transition-colors">
+                    <span class="material-symbols-outlined" data-icon="close">close</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pt-4 flex justify-between items-center">
+          <button class="text-primary font-bold flex items-center gap-2 hover:translate-x-[-4px] transition-transform">
+            <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+            Seguir Comprando
+          </button>
+          <button class="text-secondary font-medium hover:text-on-surface transition-colors">Vaciar Carrito</button>
+        </div>
+      </div>
+      <!-- Columna derecha: Resumen (30%) -->
+      <div class="lg:col-span-3">
+        <div class="bg-surface-container-low rounded-2xl p-8 sticky top-24 shadow-sm">
+          <h2 class="font-headline font-bold text-xl mb-6 text-on-surface">Resumen del pedido</h2>
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between text-secondary">
+              <span>Subtotal</span>
+              <span class="font-semibold text-on-surface">$701.000</span>
+            </div>
+            <div class="flex justify-between text-secondary">
+              <span>Envío</span>
+              <span class="font-semibold text-tertiary">Gratis</span>
+            </div>
+            <div class="h-px bg-outline-variant/30 my-4"></div>
+            <div class="flex justify-between items-end">
+              <span class="text-lg font-bold text-on-surface">TOTAL</span>
+              <span class="text-3xl font-extrabold text-primary-container">$701.000</span>
+            </div>
+          </div>
+          <button
+            class="w-full bg-primary-container text-white font-bold py-5 rounded-lg shadow-md hover:bg-primary transition-all scale-100 active:scale-95 flex items-center justify-center gap-3 mb-4">
+            PROCEDER AL PAGO
+            <span class="material-symbols-outlined" data-icon="payments">payments</span>
+          </button>
+          <p class="text-xs text-secondary text-center">
+            Impuestos incluidos. Pago procesado de forma segura.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- SECCIÓN INFERIOR: BENEFICIOS -->
+    <section class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-outline-variant/20 pt-16">
+      <div class="flex flex-col items-center text-center p-6 bg-surface-container-lowest rounded-2xl shadow-sm">
+        <div class="w-14 h-14 bg-primary-fixed rounded-full flex items-center justify-center text-primary mb-4">
+          <span class="material-symbols-outlined text-3xl" data-icon="local_shipping">local_shipping</span>
+        </div>
+        <h3 class="font-headline font-bold text-on-surface mb-2">Envío Gratis</h3>
+        <p class="text-sm text-secondary">En todas las compras superiores a $200.000 a nivel nacional.</p>
+      </div>
+      <div class="flex flex-col items-center text-center p-6 bg-surface-container-lowest rounded-2xl shadow-sm">
+        <div class="w-14 h-14 bg-primary-fixed rounded-full flex items-center justify-center text-primary mb-4">
+          <span class="material-symbols-outlined text-3xl" data-icon="verified_user">verified_user</span>
+        </div>
+        <h3 class="font-headline font-bold text-on-surface mb-2">Pago Seguro</h3>
+        <p class="text-sm text-secondary">Cifrado de 256 bits para proteger toda tu información bancaria.</p>
+      </div>
+      <div class="flex flex-col items-center text-center p-6 bg-surface-container-lowest rounded-2xl shadow-sm">
+        <div class="w-14 h-14 bg-primary-fixed rounded-full flex items-center justify-center text-primary mb-4">
+          <span class="material-symbols-outlined text-3xl" data-icon="assignment_return">assignment_return</span>
+        </div>
+        <h3 class="font-headline font-bold text-on-surface mb-2">Devoluciones</h3>
+        <p class="text-sm text-secondary">Hasta 30 días para cambios y devoluciones sin complicaciones.</p>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="w-full py-12 px-8 grid grid-cols-1 md:grid-cols-4 gap-8 bg-[#1A2238] dark:bg-[#0D111C] text-slate-400">
+    <div class="md:col-span-1">
+      <div class="text-2xl font-black text-white mb-4">Ferretería La Ceja</div>
+      <p class="text-sm leading-relaxed">El Atelier Industrial: donde la calidad se encuentra con la precisión.
+        Suministros industriales para profesionales.</p>
+    </div>
+    <div>
+      <h4 class="font-headline font-bold text-white mb-4">Productos</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Herramientas Eléctricas</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Construcción</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Pinturas</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Seguridad Industrial</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-headline font-bold text-white mb-4">Enlaces Rápidos</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Sobre Nosotros</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Contacto</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Términos y Condiciones</a></li>
+        <li><a class="hover:text-[#F27A1A] transition-colors" href="#">Preguntas Frecuentes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-headline font-bold text-white mb-4">Newsletter</h4>
+      <p class="text-xs mb-4">Suscríbete para recibir ofertas exclusivas.</p>
+      <div class="flex gap-2">
+        <input
+          class="bg-white/5 border border-white/10 rounded px-3 py-2 text-sm w-full focus:outline-none focus:border-[#F27A1A]"
+          placeholder="Tu email" type="email" />
+        <button class="bg-[#F27A1A] text-white p-2 rounded hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="md:col-span-4 border-t border-white/5 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs">© 2024 Ferretería La Ceja - El Atelier Industrial. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a class="hover:text-white" href="#"><span class="material-symbols-outlined"
+            data-icon="public">public</span></a>
+        <a class="hover:text-white" href="#"><span class="material-symbols-outlined" data-icon="share">share</span></a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

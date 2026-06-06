@@ -1,0 +1,52 @@
+# =========================================================================
+# Ferreteria La Ceja — Stack de datos local
+#
+# Uso normal (solo Postgres):
+#   docker compose up -d
+#
+# Con pgAdmin para inspeccionar la base en el navegador:
+#   docker compose --profile tools up -d
+#   -> http://localhost:5050  (credenciales en .env)
+# =========================================================================
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: flc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: flc_app
+      POSTGRES_PASSWORD: flc_app_local
+      POSTGRES_DB: ferreteria_la_ceja
+      # Forzar locale para que ordenamiento alfabético respete español.
+      LANG: es_CO.utf8
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flc_app -d ferreteria_la_ceja"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: flc-pgadmin
+    profiles: ["tools"]
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@ferreterialaceja.local}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  pgdata:
+  pgadmin_data:

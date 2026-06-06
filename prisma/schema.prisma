@@ -1,0 +1,202 @@
+// =========================================================================
+// Ferreteria La Ceja — Prisma schema
+//
+// Modelo de datos del MVP. 4 dominios:
+//   - Identidad     : User, Role
+//   - Catálogo      : Category, Brand, Product, ProductImage
+//   - Carrito       : Cart, CartItem
+//   - Comercio      : Order, OrderItem, OrderStatus
+//
+// Convenciones:
+//   - IDs cuid() (compactos, sortables y resistentes a colisión).
+//   - Decimal(12,2) para todos los precios — pesos colombianos.
+//   - Snapshots en OrderItem (productName/Sku/unitPrice): aunque el producto
+//     cambie de nombre o precio después, el pedido conserva lo que se compró.
+//   - Índices en columnas de filtro frecuente (slug, sku, status, categoryId).
+// =========================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================ Identidad ==================================
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  fullName     String
+  phone        String?
+  role         Role     @default(CLIENT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders Order[]
+  cart   Cart?
+
+  @@index([role])
+  @@index([createdAt])
+}
+
+// ============================ Catálogo ===================================
+
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  // Nombre del icono Material Symbols Outlined (ej. "handyman").
+  icon        String
+  description String?
+  products    Product[]
+}
+
+model Brand {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  products Product[]
+}
+
+model Product {
+  id           String         @id @default(cuid())
+  sku          String         @unique
+  slug         String         @unique
+  name         String
+  description  String         @db.Text
+  price        Decimal        @db.Decimal(12, 2)
+  comparePrice Decimal?       @db.Decimal(12, 2)
+  stock        Int            @default(0)
+  minStock     Int            @default(5)
+  isActive     Boolean        @default(true)
+  isFeatured   Boolean        @default(false)
+  categoryId   String
+  category     Category       @relation(fields: [categoryId], references: [id])
+  brandId      String?
+  brand        Brand?         @relation(fields: [brandId], references: [id])
+  images       ProductImage[]
+  // Especificaciones técnicas: pares clave/valor variables por categoría
+  // (potencia/voltaje en herramienta eléctrica, calibre/longitud en tornillería, etc.).
+  specs        Json?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  orderItems OrderItem[]
+  cartItems  CartItem[]
+
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@index([createdAt])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  // Ruta relativa servida por Next.js, ej. "/uploads/products/seed/abc.webp"
+  url       String
+  alt       String?
+  order     Int     @default(0)
+
+  @@index([productId, order])
+}
+
+// ============================ Carrito ====================================
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+  addedAt   DateTime @default(now())
+
+  // Un producto solo puede aparecer una vez por carrito; las cantidades se suman.
+  @@unique([cartId, productId])
+  @@index([productId])
+}
+
+// ============================ Comercio ===================================
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  DISPATCHED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  // Formato humano FLC-YYYY-NNNNNN, generado en lib/orders.ts (Fase 6).
+  orderNumber     String      @unique
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  status          OrderStatus @default(PENDING)
+  subtotal        Decimal     @db.Decimal(12, 2)
+  shippingCost    Decimal     @default(0) @db.Decimal(12, 2)
+  total           Decimal     @db.Decimal(12, 2)
+  // {nombre, telefono, direccion, ciudad, departamento, notas}
+  shippingAddress Json
+  // "simulated_card" | "simulated_pse" | "cash_on_delivery"
+  paymentMethod   String
+  notes           String?     @db.Text
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  // Snapshot al momento de la compra — preserva la verdad del pedido aunque
+  // el producto cambie luego (precio, nombre, hasta eliminación lógica).
+  productName String
+  productSku  String
+  unitPrice   Decimal @db.Decimal(12, 2)
+  quantity    Int
+  subtotal    Decimal @db.Decimal(12, 2)
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+// =========================================================================
+// Contador de pedidos por año — soporta generación atómica de orderNumber
+// con formato FLC-YYYY-NNNNNN. Se incrementa dentro de la transacción de
+// creación del pedido para garantizar números únicos y consecutivos.
+// =========================================================================
+
+model OrderSequence {
+  year       Int      @id
+  lastNumber Int      @default(0)
+  updatedAt  DateTime @updatedAt
+}

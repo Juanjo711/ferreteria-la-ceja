@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Panel Administrativo - Ferretería La Ceja</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dae2ff",
+                        "secondary-fixed-dim": "#bec6e3",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#574236",
+                        "on-secondary-fixed": "#131b30",
+                        "primary-fixed": "#ffdbc8",
+                        "secondary": "#565e77",
+                        "primary-container": "#f27a1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#3e465e",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#dec1b1",
+                        "on-tertiary-fixed-variant": "#004b71",
+                        "primary": "#984700",
+                        "on-primary-fixed-variant": "#743500",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006495",
+                        "surface-container": "#eeeeee",
+                        "tertiary-fixed-dim": "#8fcdff",
+                        "tertiary-container": "#00a4f1",
+                        "on-surface": "#1a1c1c",
+                        "outline": "#8b7264",
+                        "on-background": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-dim": "#dadada",
+                        "inverse-primary": "#ffb68a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#cbe6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#5a627b",
+                        "on-tertiary-container": "#003654",
+                        "primary-fixed-dim": "#ffb68a",
+                        "on-tertiary-fixed": "#001e30",
+                        "surface-variant": "#e2e2e2",
+                        "surface-tint": "#984700",
+                        "on-primary-fixed": "#321300",
+                        "surface-container-low": "#f3f3f3",
+                        "inverse-surface": "#2f3131",
+                        "secondary-container": "#d7dffd",
+                        "on-primary-container": "#562500"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface">
+    <!-- SIDEBAR -->
+    <aside
+        class="fixed left-0 top-0 h-full hidden lg:flex flex-col border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-[#1A2238] w-64 z-50 shadow-xl">
+        <!-- Logo Section -->
+        <div class="p-6 flex items-center gap-3">
+            <div class="bg-primary-container p-2 rounded-lg">
+                <span class="material-symbols-outlined text-white"
+                    style="font-variation-settings: 'FILL' 1;">handyman</span>
+            </div>
+            <span class="text-lg font-black text-[#1A2238] dark:text-white">Ferretería La Ceja</span>
+        </div>
+        <!-- Navigation Menu -->
+        <nav class="flex-1 mt-4 px-2 space-y-1">
+            <!-- Dashboard Active -->
+            <a class="bg-[#F27A1A] text-white rounded-lg flex items-center gap-3 px-4 py-3 transition-opacity active:opacity-80"
+                href="#">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-bold">Dashboard</span>
+            </a>
+            <a class="text-[#565E77] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg flex items-center gap-3 px-4 py-3 transition-transform hover:translate-x-1"
+                href="#">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span>Inventario</span>
+            </a>
+            <a class="text-[#565E77] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg flex items-center justify-between px-4 py-3 transition-transform hover:translate-x-1"
+                href="#">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    <span>Pedidos</span>
+                </div>
+                <span class="bg-primary-container text-white text-xs font-bold px-2 py-0.5 rounded-full">5</span>
+            </a>
+            <a class="text-[#565E77] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg flex items-center gap-3 px-4 py-3 transition-transform hover:translate-x-1"
+                href="#">
+                <span class="material-symbols-outlined">group</span>
+                <span>Clientes</span>
+            </a>
+            <a class="text-[#565E77] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg flex items-center gap-3 px-4 py-3 transition-transform hover:translate-x-1"
+                href="#">
+                <span class="material-symbols-outlined">analytics</span>
+                <span>Reportes</span>
+            </a>
+            <a class="text-[#565E77] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg flex items-center gap-3 px-4 py-3 transition-transform hover:translate-x-1"
+                href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Configuración</span>
+            </a>
+        </nav>
+        <!-- Sidebar Footer / CTA -->
+        <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-800">
+            <button
+                class="w-full bg-primary text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors mb-4">
+                <span class="material-symbols-outlined">add_circle</span>
+                Nueva Venta
+            </button>
+            <div class="flex items-center gap-3 px-2">
+                <img alt="Admin Profile" class="w-10 h-10 rounded-full object-cover"
+                    data-alt="Close up professional portrait of a business owner"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Aw_PIozlViZP454qfzLbpTL7o-YDI_ojkJI4-t2DHBXS_8k0thVXcYwSovwb6wuCr7vuFO68OvHdbXdlHp7RXMK-puiTkMOCpphNxaAQdI-8rPjuRtx-8CG4tAgAoBzhMuw2GPw8i01XPoZ2MAay8KVfyRDKvbmZMgr0UAiFwzxZmiGQgH9WQ47Nv7SCZj2RLyive2Nd2iKt9OP0fzTSldVNSGyxOhPxQuflz-P7Wd1bNTb8s9vzu16IO0daLN24ppU7NeMVnIM" />
+                <div class="flex flex-col">
+                    <span class="text-sm font-bold text-on-surface">Admin User</span>
+                    <span class="text-xs text-secondary">Dueño</span>
+                </div>
+                <button class="ml-auto text-slate-400 hover:text-error transition-colors">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+    <!-- MAIN CONTENT AREA -->
+    <main class="lg:ml-64 min-h-screen">
+        <!-- TOP APP BAR -->
+        <header class="sticky top-0 w-full z-40 flex justify-between items-center px-8 h-16 bg-[#1A2238] shadow-lg">
+            <div class="flex items-center gap-4 flex-1 max-w-xl">
+                <div class="relative w-full">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="w-full bg-white/10 border-none text-white placeholder-slate-400 text-sm py-2 pl-10 pr-4 rounded-lg focus:ring-2 focus:ring-[#F27A1A] transition-all"
+                        placeholder="Buscar productos, pedidos o clientes..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-6 ml-4">
+                <button
+                    class="relative text-slate-300 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span
+                        class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F27A1A] rounded-full border-2 border-[#1A2238]"></span>
+                </button>
+                <div class="h-8 w-[1px] bg-white/20"></div>
+                <div class="flex items-center gap-2 text-white">
+                    <span class="text-xs font-medium opacity-70">Panel Administrativo</span>
+                </div>
+            </div>
+        </header>
+        <!-- DASHBOARD CANVAS -->
+        <div class="p-8 space-y-8">
+            <!-- KPI Cards Section -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Ventas del Mes -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary-container">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-2 bg-primary-fixed rounded-lg text-primary">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">payments</span>
+                        </div>
+                        <span class="text-xs font-bold text-tertiary-container">+12.5%</span>
+                    </div>
+                    <p class="text-sm font-medium text-secondary mb-1">Ventas del Mes</p>
+                    <h3 class="text-2xl font-extrabold text-on-surface font-headline">$2.450.000</h3>
+                </div>
+                <!-- Pedidos Pendientes -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-[#FFC107]">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-2 bg-[#FFF8E1] rounded-lg text-[#FFC107]">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+                        </div>
+                        <span class="text-xs font-bold text-error">Urgente</span>
+                    </div>
+                    <p class="text-sm font-medium text-secondary mb-1">Pedidos Pendientes</p>
+                    <h3 class="text-2xl font-extrabold text-on-surface font-headline">5</h3>
+                </div>
+                <!-- Clientes Nuevos -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-2 bg-tertiary-fixed rounded-lg text-tertiary">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">person_add</span>
+                        </div>
+                        <span class="text-xs font-bold text-tertiary-container">+8</span>
+                    </div>
+                    <p class="text-sm font-medium text-secondary mb-1">Clientes Nuevos</p>
+                    <h3 class="text-2xl font-extrabold text-on-surface font-headline">24</h3>
+                </div>
+                <!-- Stock Bajo -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-error">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-2 bg-error-container rounded-lg text-error">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">warning</span>
+                        </div>
+                        <span class="text-xs font-bold text-error">12 SKU</span>
+                    </div>
+                    <p class="text-sm font-medium text-secondary mb-1">Alertas Inventario</p>
+                    <h3 class="text-2xl font-extrabold text-on-surface font-headline">7</h3>
+                </div>
+            </section>
+            <!-- Main Analytics Grid -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Ventas Graph (Visual Representation) -->
+                <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-lg font-bold text-on-surface">Rendimiento de Ventas</h2>
+                            <p class="text-sm text-secondary">Últimos 7 días de operación</p>
+                        </div>
+                        <select
+                            class="bg-surface-container-low border-none rounded-lg text-xs font-bold text-secondary focus:ring-0">
+                            <option>Semana Actual</option>
+                            <option>Mes Anterior</option>
+                        </select>
+                    </div>
+                    <!-- Simulated Chart -->
+                    <div class="h-64 flex items-end gap-3 pb-4">
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-24 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-1/2 group-hover:h-2/3 transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">LUN</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-32 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-3/4 group-hover:h-full transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">MAR</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-48 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-2/3 group-hover:h-3/4 transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">MIE</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-40 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-4/5 group-hover:h-full transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">JUE</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-56 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-5/6 group-hover:h-full transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">VIE</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-60 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-full group-hover:h-5/6 transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">SAB</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2">
+                            <div class="w-full bg-slate-100 rounded-t-lg h-28 relative overflow-hidden group">
+                                <div class="absolute bottom-0 w-full bg-[#F27A1A]/20 h-full"></div>
+                                <div
+                                    class="absolute bottom-0 w-full bg-[#F27A1A] h-1/4 group-hover:h-1/3 transition-all duration-300">
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary">DOM</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top Productos -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-on-surface mb-6">Top 5 Productos</h2>
+                    <div class="space-y-4">
+                        <!-- Product Item -->
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center">
+                                <img alt="Taladro" class="w-8 h-8 object-contain"
+                                    data-alt="Close-up of a high-power industrial drill"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS0bo0qMpQiqm0x2N0rWh1SQW7uqHXIumH3R2_SFfDWv20w3vKyAQfq0lCahQKhNv78hknsHSxOnxXUG6eeSUYBStsyYh-rpEStZhqqICzc3U-DDdITGLLiDhTfn43o-36qZOrvIJ6e3_TUSOaQbEJGAkVkouiNx0AEV8QOgjVwSUsbC3m1n46oo2RBKRONquxkuUiIssAHAc06fi1pzgmFKUUnKxzLpb4MO7QaTzKnlVU9c-t6yA-mw66cLNC34tjnW8kuArerHg" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">Taladro Percutor 20V</p>
+                                <p class="text-xs text-secondary">Herramientas Eléctricas</p>
+                            </div>
+                            <span class="text-sm font-black text-primary">124</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center">
+                                <img alt="Martillo" class="w-8 h-8 object-contain"
+                                    data-alt="Heavy duty claw hammer with rubber grip"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj1JWYSy3896tc4ocNJr9p0DtKYo9zJMbv9aMCUq0WwkQHilSphESQ0GJAlT5e-dwLj3lrvj5l0dUZLIO9q-f_vFRubjKzZY8lG4y0WcZkayqnR0WO2V7txgLTYc83DDSJch29ymUaCTGGEvfoeOtS9BZoHf9OiFZug8DTl6TDnZ-8h0a4-K9qxgQkXQFeiQkY5qBhL19LjLY3U-8xlbt5ooPK6ULC5O42l_3M1-KrDwI1T7yrOdEbqc7xSDwg83-hZJAObYaklV0" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">Martillo de Acero 16oz</p>
+                                <p class="text-xs text-secondary">Herramientas Manuales</p>
+                            </div>
+                            <span class="text-sm font-black text-primary">98</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center">
+                                <img alt="Pintura" class="w-8 h-8 object-contain"
+                                    data-alt="Premium white wall paint bucket"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfZ-0fLFwpx4N-y-LJADWK8EIGPvUJop0K23EnWBif87HXBut7RYnyvr35PCizG_Z0a0mqFWpNgP0-RnKpOz_Rg-0S0Hs88jvTK2ydttW6uGy-kkllVhD66JmI0MvXHdH4260h77CPKN2GL7wPHOL89XbA3r15tSyjGlIkd8pBqcqZy0igxX9nhlrl0QP2zH8zY8BMDBfgmre4L3ERho2BBiSPBECckhqsYVc451xYaXdqmIVMHFcSaGb4Hiuh8qBqxDsNurHbHKc" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">Pintura Vinilo Blanco</p>
+                                <p class="text-xs text-secondary">Pinturas</p>
+                            </div>
+                            <span class="text-sm font-black text-primary">85</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center">
+                                <img alt="Tornillos" class="w-8 h-8 object-contain"
+                                    data-alt="Close up of various industrial grade screws"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLvAb-ul4w63QrsT30n02rQVcS-vKw0UWX4qEgio3jA0YcrRtBbVh7YqU8xbDmjPXO9JZaI7NBkheGXh9kjiiXayI5S7gIgRz3DxFjE6q78h2Kjs4K90grgs7B-T00t6K7wsLLal5p0_HwNZqc9PT3DE7uIe1iqb5jcpIGC-E_H4qsrdDNVeGqkngBmOPgn8DO_ATD7OfdmEuTTelcDltyxlqtnTvNERFnbWTZTCd4w8Pr_0COAkQQOGmBzfvWvCiurItFB2i4YGI" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">Set Tornillos Madera</p>
+                                <p class="text-xs text-secondary">Fijación</p>
+                            </div>
+                            <span class="text-sm font-black text-primary">72</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center">
+                                <img alt="Metro" class="w-8 h-8 object-contain" data-alt="Classic yellow measuring tape"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGPsS6-l5dKgPwX4xbFoDN78xrwm9z6K4pkg0ieTTKVgM6iX4k4BT-fJiyHKz5XjeDG9juTCkZC2KBKVc-bh_WyyNI0FUCcla3aSCcMhZk3QAc0Fcp4i4tvzrQifKCHwb9tja_LCt7D3YGTp6cpadUbcUCREJc2yz6r9G1yDQYN9i8lzwRwGFkcmjH4TbK_sSxd3tLeq5k6Fqc6GxukUsum89uzIcTr02xQNHZ6Piqu8BQemu9yBrslaBrTS4ARGQTb1uma-T-Sik" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">Cinta Métrica 5m</p>
+                                <p class="text-xs text-secondary">Medición</p>
+                            </div>
+                            <span class="text-sm font-black text-primary">64</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Latest Orders Table -->
+            <section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6 flex justify-between items-center border-b border-slate-50">
+                    <h2 class="text-lg font-bold text-on-surface">Últimos Pedidos</h2>
+                    <button class="text-sm font-bold text-primary hover:underline">Ver todo el historial</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-slate-50 text-secondary text-xs font-bold uppercase tracking-wider">
+                                <th class="px-6 py-4">ID Pedido</th>
+                                <th class="px-6 py-4">Cliente</th>
+                                <th class="px-6 py-4">Fecha</th>
+                                <th class="px-6 py-4">Total</th>
+                                <th class="px-6 py-4">Estado</th>
+                                <th class="px-6 py-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-bold text-on-surface">#ORD-5241</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[10px] font-bold">
+                                            JR</div>
+                                        <span class="text-sm font-medium">Juan Rodríguez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-secondary">Hoy, 10:45 AM</td>
+                                <td class="px-6 py-4 text-sm font-bold">$125.400</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-3 py-1 bg-[#FFF8E1] text-[#984700] text-xs font-bold rounded-full">Pendiente</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-secondary hover:text-primary"><span
+                                            class="material-symbols-outlined">visibility</span></button>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-bold text-on-surface">#ORD-5240</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center text-[10px] font-bold">
+                                            ML</div>
+                                        <span class="text-sm font-medium">María López</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-secondary">Hoy, 09:12 AM</td>
+                                <td class="px-6 py-4 text-sm font-bold">$450.000</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-3 py-1 bg-secondary-container text-[#1A2238] text-xs font-bold rounded-full">Confirmado</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-secondary hover:text-primary"><span
+                                            class="material-symbols-outlined">visibility</span></button>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-bold text-on-surface">#ORD-5239</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center text-[10px] font-bold">
+                                            CG</div>
+                                        <span class="text-sm font-medium">Carlos Gómez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-secondary">Ayer, 04:30 PM</td>
+                                <td class="px-6 py-4 text-sm font-bold">$82.000</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-3 py-1 bg-tertiary-container text-white text-xs font-bold rounded-full">Enviado</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-secondary hover:text-primary"><span
+                                            class="material-symbols-outlined">visibility</span></button>
+                                </td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-bold text-on-surface">#ORD-5238</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-error-container text-error flex items-center justify-center text-[10px] font-bold">
+                                            AP</div>
+                                        <span class="text-sm font-medium">Ana Pérez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-secondary">Ayer, 02:15 PM</td>
+                                <td class="px-6 py-4 text-sm font-bold">$210.300</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-3 py-1 bg-secondary-container text-[#1A2238] text-xs font-bold rounded-full">Confirmado</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-secondary hover:text-primary"><span
+                                            class="material-symbols-outlined">visibility</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

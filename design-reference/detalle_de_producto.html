@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#dae2ff",
+            "secondary-fixed-dim": "#bec6e3",
+            "surface": "#f9f9f9",
+            "on-surface-variant": "#574236",
+            "on-secondary-fixed": "#131b30",
+            "primary-fixed": "#ffdbc8",
+            "secondary": "#565e77",
+            "primary-container": "#f27a1a",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#3e465e",
+            "surface-container-highest": "#e2e2e2",
+            "outline-variant": "#dec1b1",
+            "on-tertiary-fixed-variant": "#004b71",
+            "primary": "#984700",
+            "on-primary-fixed-variant": "#743500",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#006495",
+            "surface-container": "#eeeeee",
+            "tertiary-fixed-dim": "#8fcdff",
+            "tertiary-container": "#00a4f1",
+            "on-surface": "#1a1c1c",
+            "outline": "#8b7264",
+            "on-background": "#1a1c1c",
+            "surface-container-high": "#e8e8e8",
+            "surface-bright": "#f9f9f9",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#f1f1f1",
+            "surface-dim": "#dadada",
+            "inverse-primary": "#ffb68a",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#cbe6ff",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f9f9f9",
+            "on-secondary-container": "#5a627b",
+            "on-tertiary-container": "#003654",
+            "primary-fixed-dim": "#ffb68a",
+            "on-tertiary-fixed": "#001e30",
+            "surface-variant": "#e2e2e2",
+            "surface-tint": "#984700",
+            "on-primary-fixed": "#321300",
+            "surface-container-low": "#f3f3f3",
+            "inverse-surface": "#2f3131",
+            "secondary-container": "#d7dffd",
+            "on-primary-container": "#562500"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+  <!-- TopAppBar -->
+  <header
+    class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#1A2238] dark:bg-[#0D111C] shadow-lg dark:shadow-none">
+    <div class="flex items-center gap-8">
+      <span class="text-xl font-bold text-white tracking-tight">Ferretería La Ceja</span>
+      <nav class="hidden md:flex gap-6">
+        <a class="text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#">Productos</a>
+        <a class="text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#">Servicios</a>
+        <a class="text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#">Proyectos</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="relative hidden sm:block">
+        <input
+          class="bg-white/10 text-white border-none rounded-lg px-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary-container"
+          placeholder="Buscar herramientas..." type="text" />
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+          <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+        </button>
+        <button
+          class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+          <span class="material-symbols-outlined" data-icon="person">person</span>
+        </button>
+        <button
+          class="p-2 text-slate-300 hover:bg-white/10 transition-all duration-200 rounded-full scale-95 active:scale-90">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="pt-24 pb-16 px-6 max-w-7xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex gap-2 text-sm text-secondary mb-8 font-label">
+      <a class="hover:text-primary" href="#">Inicio</a>
+      <span>/</span>
+      <a class="hover:text-primary" href="#">Herramientas Eléctricas</a>
+      <span>/</span>
+      <span class="text-on-surface font-semibold">Taladro Percutor</span>
+    </nav>
+    <!-- Product Hero Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+      <!-- Left: Gallery -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div
+          class="bg-surface-container-lowest rounded-xl overflow-hidden aspect-square flex items-center justify-center p-8 group">
+          <img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+            data-alt="Professional orange and black impact drill"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRAzeclodFMVNaP-X5h10PlwWnTOT8iZj9kcW4GzpOl7cIHlVXsX1X9ODRKgZW1Q3xqJhTW55Q27y1NNay8i_GRs0yExgxs_Mw9AYrUwapkkwo6RFFu5zlGw6cJdeUWqb3vSOkPBY5Vb5mYWek-EzJb-bEOk3Ys8oiVyXG-Eg-C8GSZwHdbHUguJFlg9jW-1UUmUcaUk15-md-m_C31woEvBOQ4wgteiw2wpUgEa7Kpxj9sdbETl19C3CMRTNpmmhgQwdzjyb8S8M" />
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          <button class="border-2 border-primary-container rounded-lg overflow-hidden p-2 bg-white">
+            <img class="w-full aspect-square object-contain" data-alt="Impact drill front view"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUxcN5fyOqMKgPzPY_zlUBlHOlaUKY4IfJKj6Zg7UrzKvjxZXepFLyu-MlPif-FYhxmlRTjv5jMomYLohUHcIyx_UzSlwdOGcgjYCM-rAAR5NmN3cl23TXt1oLc28V0ftqDYMQwHViLSAG5UscsTszLR0B0WuS7jsooBjjkdBPy7h580hQ_a4Ju4AO7O1RHpyK9wsKYj3PlVRUQwOcdr14i2w1kT0bFrAk7rbKCE6-UaLbKDwyRRJtdBSr9ti7h_bOkp0hhdRpuDY" />
+          </button>
+          <button
+            class="border-2 border-transparent hover:border-outline-variant rounded-lg overflow-hidden p-2 bg-white transition-colors">
+            <img class="w-full aspect-square object-contain" data-alt="Impact drill side view"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa3Bj6QglW8ttaw9jQq8QYJd7-R7TagxRTsedKycDdonzLIjuqbVOW0mDsdBL6Gl-ulXJaJglapv1cTAVGR7XWWRYb8zoZRAHP8PNHhsp12kVrqgBFD2OODnsau3CQG_y6VJPclr_OUkHAdWxTt923IBXBKBT3kJPgLW9xvGud9Ttx2oS1q4mmcZR8rj_NU4z5E5RJFsA2GItcwF1Tey-9eDmsc2tVqCLSvImiKVvWxEpBDVN_0hGcBYRf2FjnAcSdUkGaTPjiXv4" />
+          </button>
+          <button
+            class="border-2 border-transparent hover:border-outline-variant rounded-lg overflow-hidden p-2 bg-white transition-colors">
+            <img class="w-full aspect-square object-contain" data-alt="Impact drill accessories"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRO6t7MStux3ywgQN53thbfqO4jgPS_E1ta5ruz4Ha4D-0ZKCgxoIxcOij2YM28-DkLQeyXdPqZXGDYX2Jk2qk8JjWSlFxlR5AheHESU13tcxVaez_Hnj5XINgVvpoh22WqCJ-UG5TUFe-U3z9eQjxOUiNn4oDw6YE_5Wor6_VEljAC4cOdTK8a8Un5IviQq5Gor-7-IYPuymUdHLnjZ_DwnUyL2HKeMuE4SfRuqfp9m1LRTeZdUaqluC8fFjqACueo-FGB_rP4bk" />
+          </button>
+          <button
+            class="border-2 border-transparent hover:border-outline-variant rounded-lg overflow-hidden p-2 bg-white transition-colors">
+            <img class="w-full aspect-square object-contain" data-alt="Drill chuck detail"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoN8bg5fkbSi8kUCfPZFKbumYQcdXX5Qhi6NzWcMR-PlvNc1sX2do67YmipoZFGdwjbWrNSdaprAIAS0sQmXgeqdl5Y55bfiQz99YrpBihJ6g8P8xBIy08JYtuP9wngsJZPSpoQJYvwwrrqeoN2mXy30ElBlHtY6uDbUHs4uVmf_Ty5CnUGY5jyYSa6JplsHav-lTDGczGx8sKU9VkMZoj8MUbuKk2mWLFF94G-WLCFWWBh883voiodZp3PIXUrH6IRnRbzZPgjvw" />
+          </button>
+        </div>
+      </div>
+      <!-- Right: Product Info -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div>
+          <span
+            class="bg-tertiary-container text-on-tertiary-container text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Industrial</span>
+          <h1 class="text-4xl font-extrabold text-on-surface mt-4 tracking-tight leading-tight">Taladro Percutor
+            Profesional 800W</h1>
+          <div class="flex items-center gap-4 mt-4">
+            <div class="flex text-primary">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined">star</span>
+            </div>
+            <span class="text-secondary text-sm">(42 Reseñas de clientes)</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-primary-container text-4xl font-black">$189.900</span>
+          <span class="text-secondary text-sm">IVA incluido. Envío gratis en La Ceja.</span>
+        </div>
+        <p class="text-on-surface-variant leading-relaxed font-body">
+          Potencia industrial para tus proyectos más exigentes. El taladro percutor de 800W cuenta con control de
+          velocidad variable, mango ergonómico antideslizante y mandril de acero de alta resistencia. Ideal para
+          concreto, metal y madera.
+        </p>
+        <div class="space-y-4 pt-4">
+          <div class="flex items-center gap-4">
+            <div
+              class="flex items-center border border-outline-variant rounded-lg bg-surface-container-low overflow-hidden">
+              <button class="px-4 py-2 hover:bg-surface-container-high transition-colors"><span
+                  class="material-symbols-outlined text-sm">remove</span></button>
+              <span class="px-6 py-2 font-bold text-on-surface">1</span>
+              <button class="px-4 py-2 hover:bg-surface-container-high transition-colors"><span
+                  class="material-symbols-outlined text-sm">add</span></button>
+            </div>
+            <span
+              class="text-sm font-medium text-on-tertiary-container px-3 py-1 bg-tertiary-container/20 rounded">Stock
+              disponible: 15 unidades</span>
+          </div>
+          <button
+            class="w-full bg-primary-container text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] active:translate-y-[0px] transition-all flex justify-center items-center gap-2">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            AGREGAR AL CARRITO
+          </button>
+          <button
+            class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary/5 transition-colors">
+            COMPRAR AHORA
+          </button>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-surface-container-highest">
+          <div class="flex items-center gap-3 text-sm font-semibold">
+            <span class="material-symbols-outlined text-primary">verified</span>
+            <span>Garantía 2 años</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm font-semibold">
+            <span class="material-symbols-outlined text-primary">local_shipping</span>
+            <span>Entrega hoy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Secondary Info Tabs -->
+    <section class="mb-20">
+      <div class="flex border-b border-surface-container-highest mb-8">
+        <button class="px-8 py-4 border-b-2 border-primary text-on-surface font-bold">Descripción</button>
+        <button
+          class="px-8 py-4 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors font-semibold">Info
+          adicional</button>
+        <button
+          class="px-8 py-4 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors font-semibold">Reseñas
+          (42)</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="md:col-span-2 space-y-6">
+          <h3 class="text-2xl font-bold">Especificaciones Técnicas</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Potencia</span>
+              <span class="font-bold">800W</span>
+            </div>
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Velocidad</span>
+              <span class="font-bold">0-3000 RPM</span>
+            </div>
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Mandril</span>
+              <span class="font-bold">1/2" (13mm)</span>
+            </div>
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Impactos</span>
+              <span class="font-bold">48000 GPM</span>
+            </div>
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Peso</span>
+              <span class="font-bold">2.3 Kg</span>
+            </div>
+            <div class="flex justify-between border-b border-surface-container-low py-2">
+              <span class="text-secondary font-medium">Voltaje</span>
+              <span class="font-bold">110V - 60Hz</span>
+            </div>
+          </div>
+          <p class="text-on-surface-variant font-body">
+            Este taladro percutor ha sido diseñado para superar las pruebas más rigurosas de durabilidad. Equipado con
+            engranajes de acero endurecido y una carcasa de polímero de alto impacto, garantiza una larga vida útil
+            incluso en entornos de obra pesada. Incluye maletín de transporte y juego de 3 brocas para concreto.
+          </p>
+        </div>
+        <div class="bg-surface-container-low p-8 rounded-xl h-fit">
+          <h4 class="font-bold mb-4">¿Necesitas asesoría?</h4>
+          <p class="text-sm text-secondary mb-6">Nuestros expertos técnicos están disponibles para ayudarte a elegir la
+            mejor herramienta para tu proyecto.</p>
+          <a class="flex items-center gap-3 text-primary font-bold hover:gap-4 transition-all" href="#">
+            <span class="material-symbols-outlined">support_agent</span>
+            Contactar experto
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Related Products -->
+    <section>
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <h2 class="text-3xl font-black tracking-tight">Productos Relacionados</h2>
+          <p class="text-secondary">Herramientas que otros profesionales también compraron.</p>
+        </div>
+        <a class="text-primary font-bold flex items-center gap-2 group" href="#">
+          Ver todos <span
+            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-surface-container-lowest p-5 rounded-xl transition-all duration-300 hover:shadow-xl group">
+          <div class="relative aspect-square mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+            <img
+              class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+              data-alt="Rotary hammer drill"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvsffGqCFVWcbArjZfTbLR6iMSTFXQAC55feoorKvOJlYf8nITHKOfr0M7BFziFHr5slF742AGfNjLgZ-Yn2ZsfmMWsLHcTrNs-M8yMDKxgfVFqyCH-7Ej-IMEPWfM0oQT-8k9yDKEnGQpMH0xZwKbRSUbTZcHP2xD6GPAmRSlJHyNWZ5JjSeI9Qs1nTXv5dsHmxwtnJ2NUPtf7m9TBTifkk0Aa0z9RzyDITJPDdjvLjfjOrebrGFE8B4FIX3igmk22h7KFZ2kQL0" />
+            <span
+              class="absolute top-2 right-2 bg-primary-container text-white text-[10px] font-bold px-2 py-1 rounded">-15%</span>
+          </div>
+          <span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Rotomartillos</span>
+          <h4 class="font-bold text-on-surface mt-1 mb-4 line-clamp-2">Rotomartillo SDS Plus 900W 3 Modos</h4>
+          <div class="flex justify-between items-end">
+            <div class="flex flex-col">
+              <span class="text-secondary text-xs line-through">$420.000</span>
+              <span class="text-on-surface font-black text-lg">$357.000</span>
+            </div>
+            <button
+              class="bg-surface-container-high p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+            </button>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-surface-container-lowest p-5 rounded-xl transition-all duration-300 hover:shadow-xl group">
+          <div class="relative aspect-square mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+            <img
+              class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+              data-alt="Rechargeable drill driver"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCS4KLQk9hBTkyZi6E7yZzMHshTReCGuyAJ_hf3-FTi7MR3uBRZQ6tV1G_YFapQ4XTx_2q4FHLzlm1ZuwoVkfqc1etwaWEunluQR07I7STCQ61w8TKLeRgcCvfC1JjjVAKJj22X6rn9HCrY3CGbxWfwvaEE_3d5Gjw1LNsJIbP3LbcmaBZitQP7cEyAY9a2gDa9Fwn2honippSeOizljGgWrb7ys8tHcxchm4wV_Hs9YPa5mlizQoTEUmCbg7JFR72rGgZiMa-_BE" />
+          </div>
+          <span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Inalámbricos</span>
+          <h4 class="font-bold text-on-surface mt-1 mb-4 line-clamp-2">Taladro Atornillador Inalámbrico 20V</h4>
+          <div class="flex justify-between items-end">
+            <div class="flex flex-col">
+              <span class="text-on-surface font-black text-lg">$289.900</span>
+            </div>
+            <button
+              class="bg-surface-container-high p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+            </button>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-surface-container-lowest p-5 rounded-xl transition-all duration-300 hover:shadow-xl group">
+          <div class="relative aspect-square mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+            <img
+              class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+              data-alt="Bench drill press"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkHAnHIbSkccPyVWrg1SG0ST2MwrTK3EiRZL50-QXUJjbKVchvLnyYTXAEhmVw8A-7s5Vp0Gli-J-H08IpjVflDYCcECT6cNEDNbGLJXaT1xGCa2AszQ4j78Ymp9x12ARP63vhnKr6tl-w1PX6zP8yYX7wKh8AaSqbULgV8DLoLpF3oxZdzY2X8dT5hLheYiQqm5S14b7cjKRYpZqkR65cfrd20X_ZUYtXbtoEDMRYAGa1qtnw1ayQim9VXRqvbMvQn7DkmqrUQQ" />
+          </div>
+          <span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Estacionarias</span>
+          <h4 class="font-bold text-on-surface mt-1 mb-4 line-clamp-2">Taladro de Banco 1/2" 5 Velocidades</h4>
+          <div class="flex justify-between items-end">
+            <div class="flex flex-col">
+              <span class="text-on-surface font-black text-lg">$540.000</span>
+            </div>
+            <button
+              class="bg-surface-container-high p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+            </button>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-surface-container-lowest p-5 rounded-xl transition-all duration-300 hover:shadow-xl group">
+          <div class="relative aspect-square mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+            <img
+              class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+              data-alt="Industrial metal bit set"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrS_9VbiWUCl9zib98YRdab5VnA6SX3pk2Epw89J9SKyLBsQlBgBMD0C2C57EvYf07jk_LD-il8aYS7cuEV2SMRWirdNRlfaWhVeNg7tcSv4YvtBZuiMnQr1jYUCQmSpqFfhSCPTZ9Q2LmIngI4rYSSmZT8K_KCji4lwPnNi4EMTc9XSqkhTqUdO-0NRiQgGNKkQ6P4OAK4jN6KcIL9q1Zrm4t43IfVdIFcCsM9LFBggAFTFWsjj64Rfx-kkPtcxzpK5_b_9T8Pj0" />
+          </div>
+          <span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Accesorios</span>
+          <h4 class="font-bold text-on-surface mt-1 mb-4 line-clamp-2">Set de Brocas Titanio (15 Unidades)</h4>
+          <div class="flex justify-between items-end">
+            <div class="flex flex-col">
+              <span class="text-on-surface font-black text-lg">$45.900</span>
+            </div>
+            <button
+              class="bg-surface-container-high p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="w-full py-12 px-8 grid grid-cols-1 md:grid-cols-4 gap-8 bg-[#1A2238] dark:bg-[#0D111C]">
+    <div class="md:col-span-1">
+      <span class="text-2xl font-black text-white block mb-6">Ferretería La Ceja</span>
+      <p class="text-slate-400 text-sm leading-relaxed mb-6 font-body">El Atelier Industrial: donde la calidad se
+        encuentra con el servicio experto. Proveedores líderes en el oriente antioqueño.</p>
+      <div class="flex gap-4">
+        <a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary-container transition-colors"
+          href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+        <a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary-container transition-colors"
+          href="#"><span class="material-symbols-outlined text-sm">alternate_email</span></a>
+        <a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary-container transition-colors"
+          href="#"><span class="material-symbols-outlined text-sm">call</span></a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-6 font-headline">Productos</h4>
+      <ul class="space-y-3">
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Herramientas Manuales</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Pinturas y Acabados</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Materiales de Obra</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Electricidad e Iluminación</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-6 font-headline">Sobre Nosotros</h4>
+      <ul class="space-y-3">
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Nuestra Historia</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Sucursales</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Servicio Técnico</a></li>
+        <li><a class="text-slate-400 hover:text-white transition-colors text-sm" href="#">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-6 font-headline">Suscríbete</h4>
+      <p class="text-slate-400 text-sm mb-4">Recibe ofertas exclusivas y consejos para tus proyectos.</p>
+      <div class="flex">
+        <input
+          class="bg-white/10 border-none rounded-l-lg px-4 py-2 text-sm w-full focus:ring-1 focus:ring-primary-container text-white"
+          placeholder="Tu correo" type="email" />
+        <button class="bg-primary-container text-white px-4 py-2 rounded-r-lg"><span
+            class="material-symbols-outlined text-sm">send</span></button>
+      </div>
+    </div>
+    <div class="md:col-span-4 pt-12 border-t border-white/10 text-center">
+      <p class="text-slate-500 text-xs font-label">© 2024 Ferretería La Ceja - El Atelier Industrial. Todos los derechos
+        reservados.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
